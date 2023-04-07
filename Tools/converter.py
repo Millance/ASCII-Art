@@ -26,6 +26,8 @@ def image_to_ascii(image, width=100):
     img_height = int(new_height / char_height) + 1
     new_image = cv2.resize(image, (img_width, img_height))
 
+    if channels == 1:
+        new_image = np.expand_dims(new_image, axis=-1)
     ascii_matrix_list = []
     # Map pixel values to ASCII characters
     for i in range(channels):
@@ -46,6 +48,5 @@ def image_to_ascii(image, width=100):
                             cv2.LINE_AA)
         preview_image_list.append(preview_image)
 
-    # Stack the color images along the third axis
-    new_preview = np.stack((preview_image_list[0], preview_image_list[1], preview_image_list[2]), axis=2)
+    new_preview = np.stack([preview_image_list[i] for i in range(channels)], axis=2)
     return new_preview

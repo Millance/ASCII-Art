@@ -3,7 +3,7 @@ import cv2
 
 
 def textImg_generator(width=800, height=600, colors=3, shape_num=100):
-    assert colors == 3, 'Only support 3 colors'
+    assert colors == 3 or colors == 1, 'Only support 3 or 1 colors'
     # 定义图像的大小和颜色数
     mean_shape_area = max(10, width * height // shape_num)
     # 创建一个黑色背景
