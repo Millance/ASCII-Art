@@ -28,7 +28,7 @@ def main():
         img = cv2.resize(img, (img.shape[1] // 2, img.shape[0] // 2))
     else:
         # Generate a random image
-        img = utils.textImg_generator(args.width, args.height, args.channel)
+        img = utils.img_generator(args.width, args.height, args.channel)
 
     stat_time = time.time()
     ascii_art = converter.image_to_ascii(img, width=args.width)
