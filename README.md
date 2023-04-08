@@ -3,7 +3,7 @@ Convert image, video, camera data stream to ASCII art
 
 将图像，视频，相机数据流转换为ASCII图像
 
-###Method 方法 1：
+##Method 方法 1：
 
 Convert each channel of a color image into an ASCII image separately, and then merge the three channels so that the color information can be preserved.
 
@@ -12,7 +12,7 @@ Convert each channel of a color image into an ASCII image separately, and then m
 
 ![](Result/result_1680937973.jpg)
 
-###Method 方法 2：
+##Method 方法 2：
 
 Convert the RGB average values of each position of a color image into ASCII characters, and output the characters using the RGB values so that the color information can be preserved.
 
