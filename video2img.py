@@ -8,9 +8,12 @@ import argparse
 def get_args():
     parser = argparse.ArgumentParser(description='Convert a video to ASCII art')
     parser.add_argument('--input', type=str, default='Data/data2.mp4', help='Path to input image')  # generate, path
+    parser.add_argument('--converter', type=int, default=2, help='Convert method')  # 1:Typical, 2: Colorful characters
     parser.add_argument('--width', type=int, default=600, help='Number of output\'s width')
     parser.add_argument('--height', type=int, default=400, help='Number of output\'s height')
     parser.add_argument('--channel', type=int, default=3)  # 3:color, 1:gray
+    parser.add_argument('--font_scale', type=float, default=0.2, help='Font scale')
+    parser.add_argument('--font_thickness', type=int, default=1, help='Font thickness')
     args = parser.parse_args()
     return args
 
@@ -31,7 +34,10 @@ def main():
             frame = np.expand_dims(frame, axis=-1)
 
         # 在窗口中显示视频流
-        img = converter.image_to_ascii(frame,  args.width)
+        if args.converter == 1:
+            img = converter.image_to_ascii(frame, args.font_scale, args.font_thickness, args.width)
+        else:
+            img = converter.image_to_ascii_2(frame, args.font_scale, args.font_thickness, args.width)
 
         cv2.imshow('frame', img)
         # 按下q键退出循环
