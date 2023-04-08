@@ -36,7 +36,7 @@ def main():
             frame = np.expand_dims(frame, axis=-1)
 
         # 在窗口中显示视频流
-        img = converter.image_to_ascii(frame, width=500)
+        img = converter.image_to_ascii(frame, args.width)
         # 计算时间间隔
         current_time = time.time()
         elapsed_time = current_time - frame_time
