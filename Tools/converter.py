@@ -2,10 +2,13 @@ import numpy as np
 import cv2
 
 # Define the grayscale values for ASCII characters
-ascii_chars = np.asarray(['@', '%', '#', '*', '+', '=', '-', ':', '.', ' ']).reshape(1, -1)
+# char_str = '@%#*+=-:. '
+char_str = 'M@WH%N8FbVpev<!}^:`. '
+ascii_chars = np.asarray([char for char in char_str]).reshape(1, -1)
 ascii_chars_count = ascii_chars.shape[1]  # Number of ASCII characters
-font_size = 0.3
-
+font_scale = 0.3
+thickness = 1
+margin = 2
 
 def image_to_ascii(image, width=100):
     # Calculate the new width and height of the image
@@ -16,8 +19,11 @@ def image_to_ascii(image, width=100):
 
     # Calculate the maximum size of each ASCII character
     size = np.asarray(
-        [cv2.getTextSize(ascii_chars[0][i], cv2.FONT_HERSHEY_PLAIN, font_size, 1)[0] for i in range(ascii_chars_count)])
-    char_width = char_height = np.max(size)  # Maximum width and height of an ASCII character
+        [cv2.getTextSize(ascii_chars[0][i], cv2.FONT_HERSHEY_TRIPLEX, font_scale, thickness)[0] for i in
+         range(ascii_chars_count)])
+    # Maximum width and height of an ASCII character
+    char_width = np.max(size[:, 0])+margin
+    char_height = np.max(size[:, 1])+margin
     preview_width = new_width
     preview_height = new_height
 
@@ -43,8 +49,8 @@ def image_to_ascii(image, width=100):
             for x in range(img_width):
                 char = ascii_matrix_list[i][y][x]
                 left = x * char_width
-                top = y * char_height
-                cv2.putText(preview_image, char, (left, top), cv2.FONT_HERSHEY_PLAIN, font_size * 2, (0, 0, 0), 1,
+                top = (y + 1) * char_height
+                cv2.putText(preview_image, char, (left, top), cv2.FONT_HERSHEY_TRIPLEX, font_scale, 0, thickness,
                             cv2.LINE_AA)
         preview_image_list.append(preview_image)
 
