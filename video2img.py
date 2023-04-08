@@ -6,7 +6,7 @@ import argparse
 
 
 def get_args():
-    parser = argparse.ArgumentParser(description='Convert an image to ASCII art')
+    parser = argparse.ArgumentParser(description='Convert a video to ASCII art')
     parser.add_argument('--input', type=str, default='Data/data2.mp4', help='Path to input image')  # generate, path
     parser.add_argument('--width', type=int, default=600, help='Number of output\'s width')
     parser.add_argument('--height', type=int, default=400, help='Number of output\'s height')

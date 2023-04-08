@@ -6,7 +6,7 @@ import argparse
 
 
 def get_args():
-    parser = argparse.ArgumentParser(description='Convert an image to ASCII art')
+    parser = argparse.ArgumentParser(description='Convert a camera data stream to ASCII art')
     parser.add_argument('--width', type=int, default=600, help='Number of output\'s width')
     parser.add_argument('--height', type=int, default=400, help='Number of output\'s height')
     parser.add_argument('--channel', type=int, default=3)  # 3:color, 1:gray
