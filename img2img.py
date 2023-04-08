@@ -25,7 +25,7 @@ def main():
     if os.path.isfile(args.input):
         # Read an image
         img = cv2.imread(args.input, 1)
-        img = cv2.resize(img, (img.shape[1] // 2, img.shape[0] // 2))
+        img = cv2.resize(img, (args.width, args.height))
     else:
         # Generate a random image
         img = utils.img_generator(args.width, args.height, args.channel)
@@ -38,7 +38,8 @@ def main():
         cv2.imshow('random_image.jpg', show_img)
         cv2.waitKey(0)
     else:
-        cv2.imwrite(args.output + 'random_image_{}.jpg'.format(int(stat_time)), ascii_art)
+        show_img = np.hstack((img, ascii_art))
+        cv2.imwrite(args.output + 'result_{}.jpg'.format(int(stat_time)), show_img)
 
 
 if __name__ == '__main__':
