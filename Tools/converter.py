@@ -8,7 +8,8 @@ ascii_chars = np.asarray([char for char in char_str]).reshape(1, -1)
 ascii_chars_count = ascii_chars.shape[1]  # Number of ASCII characters
 font_scale = 0.3
 thickness = 1
-margin = 2
+margin = 1
+
 
 def image_to_ascii(image, width=100):
     # Calculate the new width and height of the image
@@ -22,8 +23,8 @@ def image_to_ascii(image, width=100):
         [cv2.getTextSize(ascii_chars[0][i], cv2.FONT_HERSHEY_TRIPLEX, font_scale, thickness)[0] for i in
          range(ascii_chars_count)])
     # Maximum width and height of an ASCII character
-    char_width = np.max(size[:, 0])+margin
-    char_height = np.max(size[:, 1])+margin
+    char_width = np.max(size[:, 0]) + margin
+    char_height = np.max(size[:, 1]) + margin
     preview_width = new_width
     preview_height = new_height
 
